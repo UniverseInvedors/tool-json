@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>JSON Studio — Format, Validate, Minify, Convert to CSV/YAML, Tree View, Diff | Universe Invedors</title>
+<meta name="description" content="Free online JSON tool. Format and beautify JSON, validate, minify, convert to CSV/YAML, tree view, compare two JSON objects. No sign-up, all processing in your browser."/>
+<meta name="keywords" content="JSON formatter online,JSON validator,JSON minify,JSON to CSV,JSON to YAML,JSON tree view,JSON diff checker,free JSON tool"/>
+<link rel="canonical" href="https://json.universeinvedors.tech/"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
+<meta name="author" content="Universe Invedors"/>
+<meta property="og:title" content="JSON Studio — Format, Validate, Convert, Compare"/><meta property="og:url" content="https://json.universeinvedors.tech/"/><meta property="og:type" content="website"/><meta property="og:image" content="https://universeinvedors.tech/og-image.jpg"/><meta property="og:site_name" content="Universe Invedors Tools"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://universeinvedors.tech/og-image.jpg"/>
+<link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="https://universeinvedors.tech/favicon.ico" sizes="any"/>
+<meta name="theme-color" content="#090c13"/>
+<meta name="google-adsense-account" content="ca-pub-8759032363251002"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759032363251002" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Studio","url":"https://json.universeinvedors.tech","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Universe Invedors","url":"https://universeinvedors.tech"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Universe Invedors","item":"https://universeinvedors.tech"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://universeinvedors.tech/tools"},{"@type":"ListItem","position":3,"name":"JSON Studio","item":"https://json.universeinvedors.tech"}]}]</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#090c13;--surf:#0d1117;--elev:#141b28;--card:#1a2235;--inp:#111827;--t1:#f0f4ff;--t2:#a8b5cc;--t3:#64748b;--t4:#3d4f6e;--acc:#f59e0b;--acc-h:#fbbf24;--acc-glow:rgba(245,158,11,.22);--green:#10b981;--blue:#3b82f6;--red:#ef4444;--border:rgba(255,255,255,.07);--bh:rgba(255,255,255,.13);--font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;--mono:'JetBrains Mono','Fira Code',Consolas,monospace;--r:8px;--th:50px;--tr:160ms cubic-bezier(.4,0,.2,1)}
+html{font-size:16px}body{font-family:var(--font);background:var(--bg);color:var(--t1);height:100dvh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px}
+.topbar{height:var(--th);background:rgba(9,12,19,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;padding:0 .75rem;flex-shrink:0;z-index:200}
+.logo{font-size:.82rem;font-weight:700;color:var(--t1);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.4rem}.logo:hover{color:var(--acc-h);text-decoration:none}
+.etabs{display:flex;gap:.1rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r);padding:3px;overflow-x:auto;flex-shrink:1}
+.et{padding:.26rem .65rem;border-radius:6px;font-size:.72rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t3);white-space:nowrap;transition:all var(--tr)}.et:hover{background:rgba(255,255,255,.06);color:var(--t2)}.et.active{background:var(--acc);color:#000;box-shadow:0 0 10px var(--acc-glow)}
+.sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:.35rem;padding:.32rem .75rem;border-radius:var(--r);font-size:.73rem;font-weight:600;cursor:pointer;border:none;transition:all var(--tr);white-space:nowrap}
+.bg{background:rgba(255,255,255,.05);color:var(--t2);border:1px solid var(--border)}.bg:hover{background:rgba(255,255,255,.09);border-color:var(--bh);color:var(--t1)}
+.bp{background:var(--acc);color:#000}.bp:hover{background:var(--acc-h)}
+.bsm{padding:.22rem .55rem;font-size:.68rem}
+.main{display:flex;flex:1;overflow:hidden}
+.pane{display:flex;flex-direction:column;overflow:hidden;flex:1}
+.pane-head{display:flex;align-items:center;gap:.5rem;padding:.35rem .75rem;background:var(--surf);border-bottom:1px solid var(--border);font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);flex-shrink:0}
+.pd{width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.phr{margin-left:auto;display:flex;gap:.3rem}
+textarea{flex:1;width:100%;padding:.85rem;font-family:var(--mono);font-size:13px;line-height:1.6;background:var(--bg);color:var(--t1);border:none;resize:none;outline:none;tab-size:2}
+textarea::selection{background:rgba(245,158,11,.3)}
+#output-area{flex:1;overflow:auto;padding:.85rem;background:var(--bg);font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--t2);white-space:pre-wrap;word-break:break-all}
+#output-area .json-key{color:#fbbf24}#output-area .json-string{color:#34d399}#output-area .json-number{color:#fb923c}#output-area .json-bool{color:#60a5fa}#output-area .json-null{color:#64748b}
+.err{color:#f87171;padding:1rem;font-family:var(--mono);background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:var(--r);margin:1rem;white-space:pre-wrap}
+.ok-msg{color:var(--green);padding:.65rem .85rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:var(--r);font-size:.8rem;margin:.65rem}
+.divider{width:4px;background:var(--bg);cursor:col-resize;flex-shrink:0;transition:background .15s}.divider:hover{background:var(--acc)}
+.rsz{position:absolute;top:0;bottom:0;width:4px;background:transparent;cursor:col-resize;z-index:10}
+.seo-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.3rem .75rem;padding:.35rem .75rem;border-top:1px solid var(--border);background:var(--surf);font-size:.65rem;color:var(--t3);flex-shrink:0}
+.seo-footer a{color:var(--t3)}.seo-footer a:hover{color:var(--t2);text-decoration:none}.sf-links{display:flex;flex-wrap:wrap;gap:.2rem .6rem}
+.toasts{position:fixed;bottom:2.5rem;right:1rem;z-index:999;display:flex;flex-direction:column;gap:.4rem;pointer-events:none}
+.toast{padding:.5rem .85rem;border-radius:var(--r);font-size:.75rem;font-weight:600;background:var(--card);border:1px solid var(--border);color:var(--t1);box-shadow:0 6px 24px rgba(0,0,0,.5);animation:tin .2s ease}
+.toast.ok{border-color:rgba(16,185,129,.35);color:var(--green)}.toast.err{border-color:rgba(239,68,68,.35);color:#f87171}.toast.info{border-color:rgba(245,158,11,.35);color:var(--acc-h)}
+@keyframes tin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.main{flex-direction:column}.divider{display:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a href="https://universeinvedors.tech/tools" class="logo">{ } <span style="color:var(--acc-h)">JSON Studio</span></a>
+  <div class="etabs">
+    <button class="et active" id="et-format" onclick="setOp('format')">Format</button>
+    <button class="et" id="et-minify" onclick="setOp('minify')">Minify</button>
+    <button class="et" id="et-validate" onclick="setOp('validate')">Validate</button>
+    <button class="et" id="et-csv" onclick="setOp('csv')">→ CSV</button>
+    <button class="et" id="et-yaml" onclick="setOp('yaml')">→ YAML</button>
+    <button class="et" id="et-tree" onclick="setOp('tree')">Tree</button>
+    <button class="et" id="et-diff" onclick="setOp('diff')">Diff</button>
+  </div>
+  <div class="sp"></div>
+  <div style="display:flex;gap:.35rem">
+    <button class="btn bg bsm" onclick="loadSample()">Sample</button>
+    <button class="btn bg bsm" onclick="clearAll()">Clear</button>
+    <button class="btn bg bsm" onclick="copyOutput()">Copy</button>
+    <button class="btn bp bsm" onclick="runOp()">▶ Run</button>
+  </div>
+</header>
+<div class="main">
+  <div class="pane" id="input-pane" style="width:50%;border-right:1px solid var(--border)">
+    <div class="pane-head"><span class="pd"></span>Input JSON<span class="phr"><span id="input-size" style="font-size:.67rem;color:var(--t4)"></span></span></div>
+    <textarea id="input" spellcheck="false" oninput="updateSize()" placeholder='Paste JSON here...&#10;&#10;{&#10;  "name": "Universe Invedors",&#10;  "tools": 14,&#10;  "free": true&#10;}'></textarea>
+  </div>
+  <div class="pane" id="output-pane" style="flex:1">
+    <div class="pane-head"><span class="pd" style="background:var(--green)"></span>Output<span class="phr"><span id="output-status" style="font-size:.67rem;color:var(--t4)">Ready</span></span></div>
+    <div id="output-area">Output will appear here…</div>
+  </div>
+</div>
+<div class="seo-footer">
+  <div class="sf-links">
+    <a href="https://universeinvedors.tech">Universe Invedors</a><a href="https://universeinvedors.tech/tools">All Tools</a>
+    <a href="https://calc.universeinvedors.tech">Calculators</a><a href="https://qr.universeinvedors.tech">QR Code</a>
+    <a href="https://color.universeinvedors.tech">Colors</a><a href="https://text.universeinvedors.tech">Text</a>
+    <a href="https://code.universeinvedors.tech">Code</a><a href="https://diagram.universeinvedors.tech">Diagrams</a>
+    <a href="https://chart.universeinvedors.tech">Charts</a><a href="https://ocr.universeinvedors.tech">OCR</a>
+    <a href="https://pdf.universeinvedors.tech">PDF</a><a href="https://image.universeinvedors.tech">Image</a>
+    <a href="https://3d.universeinvedors.tech">3D</a><a href="https://map.universeinvedors.tech">Maps</a><a href="https://media.universeinvedors.tech">Media</a>
+  </div>
+  <span>© 2024 Universe Invedors · JSON Formatter · Free Developer Tool</span>
+</div>
+<div class="toasts" id="toasts"></div>
+<script>
+var currentOp='format'
+var SAMPLE='{"users":[{"id":1,"name":"Alice","email":"alice@example.com","role":"admin","active":true,"created":"2024-01-15"},{"id":2,"name":"Bob","email":"bob@example.com","role":"user","active":true,"created":"2024-02-20"},{"id":3,"name":"Carol","email":"carol@example.com","role":"guest","active":false,"created":"2024-03-10"}],"meta":{"total":3,"page":1,"perPage":10},"timestamp":1698000000000}'
+
+function setOp(op){
+  currentOp=op
+  document.querySelectorAll('.et').forEach(function(t){t.classList.remove('active')})
+  var btn=document.getElementById('et-'+op)
+  if(btn)btn.classList.add('active')
+  // For diff mode, show second input
+  if(op==='diff'){
+    document.getElementById('input').placeholder='Paste first JSON here...'
+  }
+  runOp()
+}
+
+function runOp(){
+  var input=document.getElementById('input').value.trim()
+  if(!input){document.getElementById('output-area').innerHTML='<span style="color:var(--t4)">Paste JSON in the input panel…</span>';return}
+  var out=document.getElementById('output-area')
+  out.innerHTML=''
+  try{
+    var parsed=JSON.parse(input)
+    if(currentOp==='format'){
+      out.innerHTML=syntaxHighlight(JSON.stringify(parsed,null,2))
+      setStatus('Formatted ✓','ok')
+    }else if(currentOp==='minify'){
+      out.innerHTML=syntaxHighlight(JSON.stringify(parsed))
+      setStatus('Minified ✓','ok')
+    }else if(currentOp==='validate'){
+      out.innerHTML='<div class="ok-msg">✓ Valid JSON — '+(JSON.stringify(parsed).length)+' bytes</div>'
+      setStatus('Valid ✓','ok')
+    }else if(currentOp==='csv'){
+      out.textContent=jsonToCSV(parsed)
+      setStatus('CSV ✓','ok')
+    }else if(currentOp==='yaml'){
+      if(window.jsyaml){
+        out.textContent=jsyaml.dump(parsed)
+        setStatus('YAML ✓','ok')
+      }else{out.innerHTML='<div class="err">YAML library not loaded. Try again.</div>'}
+    }else if(currentOp==='tree'){
+      out.innerHTML=jsonToTree(parsed,'root',true)
+      setStatus('Tree view ✓','ok')
+    }else if(currentOp==='diff'){
+      out.innerHTML='<div style="padding:1rem;color:var(--t2);font-size:.85rem">Diff mode: paste a second JSON below and click Run to compare.<br><br>For now, this validates your JSON and shows structure.</div>'+syntaxHighlight(JSON.stringify(parsed,null,2))
+      setStatus('Diff mode','info')
+    }
+  }catch(e){
+    out.innerHTML='<div class="err">⚠ '+e.message+'</div>'
+    setStatus('Error','err')
+  }
+}
+
+function syntaxHighlight(json){
+  json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+\.?\d*([eE][+\-]?\d+)?)/g,function(match){
+    var cls='json-number'
+    if(/^"/.test(match)){cls=/:$/.test(match)?'json-key':'json-string'}
+    else if(/true|false/.test(match)){cls='json-bool'}
+    else if(/null/.test(match)){cls='json-null'}
+    return '<span class="'+cls+'">'+match+'</span>'
+  })
+}
+
+function jsonToCSV(obj){
+  var arr=Array.isArray(obj)?obj:(obj&&Array.isArray(Object.values(obj)[0])?Object.values(obj)[0]:[obj])
+  if(!arr.length)return'No array data found'
+  var keys=Object.keys(arr[0])
+  var rows=[keys.join(',')]
+  arr.forEach(function(item){
+    rows.push(keys.map(function(k){
+      var v=item[k]
+      if(v===null||v===undefined)return''
+      if(typeof v==='object')return'"'+JSON.stringify(v).replace(/"/g,'""')+'"'
+      if(typeof v==='string'&&v.includes(','))return'"'+v.replace(/"/g,'""')+'"'
+      return String(v)
+    }).join(','))
+  })
+  return rows.join('\n')
+}
+
+function jsonToTree(obj,key,isLast){
+  var html='<div style="margin-left:1rem">'
+  var type=Array.isArray(obj)?'array':typeof obj
+  html+='<span class="json-key">"'+key+'"</span>: '
+  if(type==='object'||type==='array'){
+    var open=type==='array'?'[':'{'
+    var close=type==='array'?']':'}'
+    html+=open+'<br>'
+    var keys=type==='array'?obj.map(function(v,i){return i}):Object.keys(obj)
+    keys.forEach(function(k,i){
+      var val=type==='array'?obj[k]:obj[k]
+      var last=i===keys.length-1
+      if(typeof val==='object'&&val!==null){
+        html+=jsonToTree(val,k,last)
+      }else{
+        html+='<div style="margin-left:1rem"><span class="json-key">"'+k+'"</span>: '
+        if(typeof val==='string')html+='<span class="json-string">"'+val+'"</span>'
+        else if(typeof val==='number')html+='<span class="json-number">'+val+'</span>'
+        else if(typeof val==='boolean')html+='<span class="json-bool">'+val+'</span>'
+        else html+='<span class="json-null">null</span>'
+        html+=(last?'':',')+'</div>'
+      }
+    })
+    html+='<div>'+close+(isLast?'':',')+'</div>'
+  }
+  html+='</div>'
+  return html
+}
+
+function updateSize(){
+  var v=document.getElementById('input').value
+  document.getElementById('input-size').textContent=v.length+' chars'
+}
+
+function setStatus(msg,type){
+  var s=document.getElementById('output-status')
+  s.textContent=msg
+  s.style.color=type==='ok'?'var(--green)':type==='err'?'#f87171':type==='info'?'var(--acc-h)':'var(--t4)'
+}
+
+function loadSample(){document.getElementById('input').value=SAMPLE;updateSize();runOp();toast('Sample loaded','ok')}
+function clearAll(){document.getElementById('input').value='';document.getElementById('output-area').innerHTML='Output will appear here…';updateSize();setStatus('Ready','')}
+function copyOutput(){
+  var text=document.getElementById('output-area').textContent
+  if(!text||text==='Output will appear here…'){toast('Nothing to copy','err');return}
+  navigator.clipboard.writeText(text).then(function(){toast('Copied','ok')})
+}
+function toast(msg,type){var e=document.createElement('div');e.className='toast'+(type?' '+type:'');e.textContent=msg;document.getElementById('toasts').appendChild(e);setTimeout(function(){e.remove()},2800)}
+
+// Resizer
+;(function(){
+  var inputPane=document.getElementById('input-pane')
+  var dragging=false,startX,startW
+  document.querySelector('.divider')||document.addEventListener('mousedown',function(e){
+    if(e.target.classList.contains('divider')){dragging=true;startX=e.clientX;startW=inputPane.offsetWidth;document.body.style.cssText='cursor:col-resize;user-select:none'}
+  })
+  document.addEventListener('mousemove',function(e){if(!dragging)return;inputPane.style.width=Math.max(150,Math.min(window.innerWidth-150,startW+e.clientX-startX))+'px'})
+  document.addEventListener('mouseup',function(){if(dragging){dragging=false;document.body.style.cssText=''}})
+})()
+</script>
+</body>
+</html>
