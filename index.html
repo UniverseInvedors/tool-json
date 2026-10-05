@@ -11,6 +11,7 @@
 <meta property="og:title" content="JSON Studio — Format, Validate, Convert, Compare"/><meta property="og:url" content="https://json.universeinvedors.tech/"/><meta property="og:type" content="website"/><meta property="og:image" content="https://universeinvedors.tech/og-image.jpg"/><meta property="og:site_name" content="Universe Invedors Tools"/>
 <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://universeinvedors.tech/og-image.jpg"/>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="https://universeinvedors.tech/favicon.ico" sizes="any"/>
+<link rel="manifest" href="/manifest.json"/>
 <meta name="theme-color" content="#090c13"/>
 <meta name="google-adsense-account" content="ca-pub-8759032363251002"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759032363251002" crossorigin="anonymous"></script>
@@ -132,8 +133,10 @@ textarea::selection{background:rgba(59,130,246,.25)}
     <button class="et" id="et-validate" onclick="setOp('validate')">Validate</button>
     <button class="et" id="et-csv" onclick="setOp('csv')">→ CSV</button>
     <button class="et" id="et-yaml" onclick="setOp('yaml')">→ YAML</button>
+    <button class="et" id="et-typescript" onclick="setOp('typescript')">→ TypeScript</button>
     <button class="et" id="et-tree" onclick="setOp('tree')">Tree</button>
     <button class="et" id="et-diff" onclick="setOp('diff')">Diff</button>
+    <button class="et" id="et-jsonpath" onclick="setOp('jsonpath')">JSONPath</button>
   </div>
   <div class="sp"></div>
   <div style="display:flex;gap:.35rem">
@@ -148,12 +151,34 @@ textarea::selection{background:rgba(59,130,246,.25)}
     <div class="pane-head"><span class="pd"></span>Input JSON<span class="phr"><span id="input-size" style="font-size:.67rem;color:var(--text-4)"></span></span></div>
     <textarea id="input" spellcheck="false" oninput="updateSize()" placeholder='Paste JSON here...&#10;&#10;{&#10;  "name": "Universe Invedors",&#10;  "tools": 14,&#10;  "free": true&#10;}'></textarea>
   </div>
-  <div class="pane" id="output-pane" style="flex:1">
-    <div class="pane-head"><span class="pd" style="background:var(--green)"></span>Output<span class="phr"><span id="output-status" style="font-size:.67rem;color:var(--text-4)">Ready</span></span></div>
-    <div id="output-area">Output will appear here…</div>
+  <div class="pane" id="output-pane" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+    <div class="pane-head"><span class="pd" style="background:var(--green)"></span>Output<span class="phr"><span id="output-status" style="font-size:.67rem;color:var(--text-4)">Ready</span><button class="btn bg bsm" onclick="copyOutput()" title="Copy output" style="height:22px;font-size:.65rem;margin-left:.3rem">Copy</button></span></div>
+    <!-- JSONPath query bar -->
+    <div id="jp-row" style="display:none;align-items:center;gap:.4rem;padding:.35rem .6rem;background:var(--bg-surface);border-bottom:1px solid var(--border);flex-shrink:0">
+      <span style="font-size:.72rem;color:var(--text-3);font-family:var(--font-mono)">Path:</span>
+      <input id="jp-query" type="text" placeholder="$.users[*].email" style="flex:1;padding:.28rem .6rem;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--text-1);font-size:.8rem;font-family:var(--font-mono);outline:none" onkeydown="if(event.key==='Enter')runOp()"/>
+      <button class="btn bp bsm" onclick="runOp()">Query</button>
+    </div>
+    <!-- Diff second input -->
+    <div id="diff-row" style="display:none;flex-direction:column;border-bottom:1px solid var(--border);flex-shrink:0;max-height:40%">
+      <div class="pane-head" style="font-size:.66rem"><span class="pd" style="background:#f87171"></span>JSON B — paste here to compare</div>
+      <textarea id="diff-input2" spellcheck="false" placeholder="Paste second JSON here…" style="flex:1;width:100%;padding:.7rem;font-family:var(--font-mono);font-size:12px;line-height:1.6;background:var(--bg-base);color:var(--text-1);border:none;resize:none;outline:none;tab-size:2;min-height:120px" oninput="runOp()"></textarea>
+    </div>
+    <div id="output-area" style="flex:1;overflow:auto;padding:.85rem;background:var(--bg-base);font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-2);white-space:pre-wrap;word-break:break-all"><div class="empty-msg">Paste JSON in the input panel to begin.</div></div>
   </div>
 </div>
-<footer class="seo-footer"><div class="sf-links"><a href="https://universeinvedors.tech">Home</a><a href="https://universeinvedors.tech/tools">All Tools</a><a href="https://calc.universeinvedors.tech">Calc</a><a href="https://json.universeinvedors.tech">JSON</a><a href="https://qr.universeinvedors.tech">QR</a><a href="https://color.universeinvedors.tech">Color</a><a href="https://text.universeinvedors.tech">Text</a><a href="https://code.universeinvedors.tech">Code</a><a href="https://diagram.universeinvedors.tech">Diagrams</a><a href="https://chart.universeinvedors.tech">Charts</a><a href="https://ocr.universeinvedors.tech">OCR</a><a href="https://pdf.universeinvedors.tech">PDF</a><a href="https://image.universeinvedors.tech">Image</a><a href="https://3d.universeinvedors.tech">3D</a><a href="https://map.universeinvedors.tech">Map</a><a href="https://media.universeinvedors.tech">Media</a></div><span>� 2026 Universe Invedors</span></footer>
+<!-- Download + shortcut bar -->
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:.3rem;padding:.35rem .75rem;background:var(--bg-surface);border-top:1px solid var(--border);flex-shrink:0">
+  <span style="font-size:.68rem;color:var(--text-3);margin-right:.15rem">Export:</span>
+  <button class="btn bg bsm" onclick="sendToChart()">Chart Studio</button>
+  <button class="btn bg bsm" onclick="downloadOutput('json','application/json')">JSON</button>
+  <button class="btn bg bsm" onclick="downloadCSV()">CSV</button>
+  <button class="btn bg bsm" onclick="downloadYAML()">YAML</button>
+  <button class="btn bg bsm" onclick="downloadOutput('ts','text/plain')">TypeScript</button>
+  <span style="flex:1"></span>
+  <span style="font-size:.65rem;color:var(--text-4)">Ctrl+Enter Run &nbsp;·&nbsp; Ctrl+Shift+C Copy</span>
+</div>
+<footer class="seo-footer"><div class="sf-links"><a href="https://universeinvedors.tech">Home</a><a href="https://universeinvedors.tech/tools">All Tools</a><a href="https://calc.universeinvedors.tech">Calc</a><a href="https://json.universeinvedors.tech">JSON</a><a href="https://qr.universeinvedors.tech">QR</a><a href="https://color.universeinvedors.tech">Color</a><a href="https://text.universeinvedors.tech">Text</a><a href="https://code.universeinvedors.tech">Code</a><a href="https://diagram.universeinvedors.tech">Diagrams</a><a href="https://chart.universeinvedors.tech">Charts</a><a href="https://ocr.universeinvedors.tech">OCR</a><a href="https://pdf.universeinvedors.tech">PDF</a><a href="https://image.universeinvedors.tech">Image</a><a href="https://3d.universeinvedors.tech">3D</a><a href="https://map.universeinvedors.tech">Map</a><a href="https://media.universeinvedors.tech">Media</a></div><span>� 2026 Universe Invedors</span></footer>
   <span>© 2024 Universe Invedors · JSON Formatter · Free Developer Tool</span>
 </div>
 <div class="toasts" id="toasts"></div>
@@ -161,58 +186,92 @@ textarea::selection{background:rgba(59,130,246,.25)}
 var currentOp='format'
 var SAMPLE='{"users":[{"id":1,"name":"Alice","email":"alice@example.com","role":"admin","active":true,"created":"2024-01-15"},{"id":2,"name":"Bob","email":"bob@example.com","role":"user","active":true,"created":"2024-02-20"},{"id":3,"name":"Carol","email":"carol@example.com","role":"guest","active":false,"created":"2024-03-10"}],"meta":{"total":3,"page":1,"perPage":10},"timestamp":1698000000000}'
 
+// ── Tab switching ────────────────────────────────────────
 function setOp(op){
   currentOp=op
   document.querySelectorAll('.et').forEach(function(t){t.classList.remove('active')})
   var btn=document.getElementById('et-'+op)
   if(btn)btn.classList.add('active')
-  // For diff mode, show second input
-  if(op==='diff'){
-    document.getElementById('input').placeholder='Paste first JSON here...'
-  }
+  // Diff mode needs second input visible
+  var diffRow=document.getElementById('diff-row')
+  if(diffRow)diffRow.style.display=op==='diff'?'block':'none'
+  // JSONPath needs query bar
+  var jpRow=document.getElementById('jp-row')
+  if(jpRow)jpRow.style.display=op==='jsonpath'?'flex':'none'
+  // TypeScript mode message
+  if(op==='typescript')document.getElementById('input').placeholder='Paste JSON here to generate TypeScript types…'
+  else if(op==='diff')document.getElementById('input').placeholder='Paste first JSON here…'
+  else document.getElementById('input').placeholder='Paste JSON here...\n\n{\n  "name": "Universe Invedors",\n  "tools": 14,\n  "free": true\n}'
   runOp()
 }
 
+// ── Main operation router ────────────────────────────────
 function runOp(){
   var input=document.getElementById('input').value.trim()
-  if(!input){document.getElementById('output-area').innerHTML='<span style="color:var(--text-4)">Paste JSON in the input panel…</span>';return}
+  if(!input){document.getElementById('output-area').innerHTML='<div class="empty-msg">Paste JSON in the input panel to begin.</div>';return}
   var out=document.getElementById('output-area')
   out.innerHTML=''
+
+  // Diff is handled separately (needs two inputs)
+  if(currentOp==='diff'){runDiff();return}
+  if(currentOp==='jsonpath'){runJSONPath();return}
+
   try{
     var parsed=JSON.parse(input)
     if(currentOp==='format'){
       out.innerHTML=syntaxHighlight(JSON.stringify(parsed,null,2))
-      setStatus('Formatted ✓','ok')
+      setStatus('Formatted ✓ — '+JSON.stringify(parsed).length+' bytes','ok')
     }else if(currentOp==='minify'){
-      out.innerHTML=syntaxHighlight(JSON.stringify(parsed))
-      setStatus('Minified ✓','ok')
+      var min=JSON.stringify(parsed)
+      out.innerHTML=syntaxHighlight(min)
+      setStatus('Minified ✓ — saved '+(JSON.stringify(parsed,null,2).length-min.length)+' bytes','ok')
     }else if(currentOp==='validate'){
-      out.innerHTML='<div class="ok-msg">✓ Valid JSON — '+(JSON.stringify(parsed).length)+' bytes</div>'
+      var info=analyseJSON(parsed)
+      out.innerHTML='<div class="ok-msg">✓ Valid JSON<br><small style="color:var(--text-3)">'+info+'</small></div>'
       setStatus('Valid ✓','ok')
     }else if(currentOp==='csv'){
-      out.textContent=jsonToCSV(parsed)
-      setStatus('CSV ✓','ok')
+      var csv=jsonToCSV(parsed)
+      out.textContent=csv
+      setStatus('Converted ✓','ok')
     }else if(currentOp==='yaml'){
       if(window.jsyaml){
         out.textContent=jsyaml.dump(parsed)
         setStatus('YAML ✓','ok')
-      }else{out.innerHTML='<div class="err">YAML library not loaded. Try again.</div>'}
+      }else{out.innerHTML='<div class="err">YAML library not loaded — reload and try again.</div>'}
     }else if(currentOp==='tree'){
-      out.innerHTML=jsonToTree(parsed,'root',true)
+      out.innerHTML='<div style="font-family:var(--font-mono);font-size:13px;line-height:1.7">'+jsonToTree(parsed,'root',true)+'</div>'
       setStatus('Tree view ✓','ok')
-    }else if(currentOp==='diff'){
-      out.innerHTML='<div style="padding:1rem;color:var(--t2);font-size:.85rem">Diff mode: paste a second JSON below and click Run to compare.<br><br>For now, this validates your JSON and shows structure.</div>'+syntaxHighlight(JSON.stringify(parsed,null,2))
-      setStatus('Diff mode','info')
+    }else if(currentOp==='typescript'){
+      out.textContent=jsonToTypeScript(parsed,'Root')
+      setStatus('Types generated ✓','ok')
     }
   }catch(e){
-    out.innerHTML='<div class="err">⚠ '+e.message+'</div>'
-    setStatus('Error','err')
+    out.innerHTML='<div class="err">⚠ '+escKey(e.message)+'</div>'
+    setStatus('Parse error','err')
   }
 }
 
+// ── Analyse JSON structure ───────────────────────────────
+function analyseJSON(obj){
+  var keys=0,depth=0
+  function walk(v,d){
+    if(d>depth)depth=d
+    if(typeof v==='object'&&v!==null){
+      Object.keys(v).forEach(function(k){keys++;walk(v[k],d+1)})
+    }
+  }
+  walk(obj,0)
+  var size=JSON.stringify(obj).length
+  var type=Array.isArray(obj)?'Array['+obj.length+']':'Object'
+  return type+' · '+keys+' keys · max depth '+depth+' · '+size+' bytes'
+}
+
+// ── Syntax highlighter (XSS-safe) ───────────────────────
+function escKey(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
 function syntaxHighlight(json){
-  json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-  return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+\.?\d*([eE][+\-]?\d+)?)/g,function(match){
+  var esc=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  return esc.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?)/g,function(match){
     var cls='json-number'
     if(/^"/.test(match)){cls=/:$/.test(match)?'json-key':'json-string'}
     else if(/true|false/.test(match)){cls='json-bool'}
@@ -221,69 +280,259 @@ function syntaxHighlight(json){
   })
 }
 
+// ── Real JSON Diff ───────────────────────────────────────
+function runDiff(){
+  var a=document.getElementById('input').value.trim()
+  var b=(document.getElementById('diff-input2')||{value:''}).value.trim()
+  if(!a||!b){
+    document.getElementById('output-area').innerHTML='<div class="empty-msg">Paste JSON A in the left panel and JSON B in the right panel below, then click Run.</div>'
+    setStatus('Waiting for both inputs','info')
+    return
+  }
+  try{
+    var objA=JSON.parse(a),objB=JSON.parse(b)
+    var diffs=[]
+    diffObjects(objA,objB,'',diffs)
+    if(!diffs.length){
+      document.getElementById('output-area').innerHTML='<div class="ok-msg">✓ JSON objects are identical</div>'
+      setStatus('No differences','ok')
+    }else{
+      var html=diffs.map(function(d){
+        if(d.type==='added')return'<div class="diff-added"><span class="diff-sign">+</span> <span class="diff-path">'+escKey(d.path)+'</span>: <span class="diff-val">'+escKey(JSON.stringify(d.b))+'</span></div>'
+        if(d.type==='removed')return'<div class="diff-removed"><span class="diff-sign">-</span> <span class="diff-path">'+escKey(d.path)+'</span>: <span class="diff-val">'+escKey(JSON.stringify(d.a))+'</span></div>'
+        return'<div class="diff-changed"><span class="diff-sign">~</span> <span class="diff-path">'+escKey(d.path)+'</span>: <span class="diff-val-old">'+escKey(JSON.stringify(d.a))+'</span> → <span class="diff-val-new">'+escKey(JSON.stringify(d.b))+'</span></div>'
+      }).join('')
+      document.getElementById('output-area').innerHTML=html
+      setStatus(diffs.length+' difference'+(diffs.length!==1?'s':''),'err')
+    }
+  }catch(e){
+    document.getElementById('output-area').innerHTML='<div class="err">⚠ '+escKey(e.message)+'</div>'
+    setStatus('Parse error','err')
+  }
+}
+
+function diffObjects(a,b,path,diffs){
+  var allKeys=new Set([].concat(Object.keys(a||{}),Object.keys(b||{})))
+  allKeys.forEach(function(k){
+    var p=path?(path+'.'+k):k
+    var av=a?a[k]:undefined,bv=b?b[k]:undefined
+    if(av===undefined&&bv!==undefined){diffs.push({type:'added',path:p,b:bv})}
+    else if(av!==undefined&&bv===undefined){diffs.push({type:'removed',path:p,a:av})}
+    else if(typeof av==='object'&&av!==null&&typeof bv==='object'&&bv!==null&&!Array.isArray(av)&&!Array.isArray(bv)){
+      diffObjects(av,bv,p,diffs)
+    }else if(JSON.stringify(av)!==JSON.stringify(bv)){
+      diffs.push({type:'changed',path:p,a:av,b:bv})
+    }
+  })
+}
+
+// ── JSONPath implementation (no library needed) ──────────
+function runJSONPath(){
+  var input=document.getElementById('input').value.trim()
+  var query=(document.getElementById('jp-query')||{value:'$'}).value.trim()||'$'
+  if(!input){document.getElementById('output-area').innerHTML='<div class="empty-msg">Paste JSON first.</div>';return}
+  try{
+    var obj=JSON.parse(input)
+    var results=jsonPath(obj,query)
+    var out=document.getElementById('output-area')
+    if(!results||!results.length){
+      out.innerHTML='<div style="padding:.85rem;color:var(--text-3);font-family:var(--font-mono);font-size:13px">No matches for: '+escKey(query)+'</div>'
+      setStatus('0 matches','info')
+    }else{
+      out.innerHTML=syntaxHighlight(JSON.stringify(results.length===1?results[0]:results,null,2))
+      setStatus(results.length+' match'+(results.length!==1?'es':''),'ok')
+    }
+  }catch(e){
+    document.getElementById('output-area').innerHTML='<div class="err">⚠ '+escKey(e.message)+'</div>'
+    setStatus('Error','err')
+  }
+}
+
+// JSONPath engine — supports $, .key, ['key'], [n], [*], ..key, [?(@.key>val)]
+function jsonPath(obj,expr){
+  if(expr==='$'||expr==='')return[obj]
+  var tokens=expr.replace(/^\$/,'').split(/(?=\.\.?|\[)/)
+  function evaluate(nodes,token){
+    var results=[]
+    nodes.forEach(function(node){
+      if(token.startsWith('..')){
+        // Recursive descent
+        var key=token.slice(2)
+        function descend(v){
+          if(typeof v!=='object'||v===null)return
+          if(key==='*'||key===''){Object.values(Array.isArray(v)?v:v).forEach(function(c){results.push(c);descend(c)})}
+          else{if(v[key]!==undefined)results.push(v[key]);Object.values(v).forEach(descend)}
+        }
+        descend(node)
+      }else if(token.startsWith('[')){
+        var inner=token.slice(1,-1)
+        if(inner==='*'){
+          if(Array.isArray(node))node.forEach(function(c){results.push(c)})
+          else if(typeof node==='object'&&node!==null)Object.values(node).forEach(function(c){results.push(c)})
+        }else if(inner.startsWith('?(')){
+          // Filter expression [?(@.key op val)]
+          var m=inner.match(/\?\(@\.(\w+)\s*([><=!]+)\s*(.+)\)/)
+          if(m&&Array.isArray(node)){
+            var fkey=m[1],fop=m[2],fval=JSON.parse(m[3])
+            node.forEach(function(item){
+              var iv=item[fkey]
+              var pass=fop==='=='?iv==fval:fop==='!='?iv!=fval:fop==='>'?iv>fval:fop==='<'?iv<fval:fop==='>='?iv>=fval:iv<=fval
+              if(pass)results.push(item)
+            })
+          }
+        }else if(/^\d+$/.test(inner)){
+          if(Array.isArray(node)&&node[parseInt(inner)]!==undefined)results.push(node[parseInt(inner)])
+        }else{
+          var k=inner.replace(/^['"]|['"]$/g,'')
+          if(node&&node[k]!==undefined)results.push(node[k])
+        }
+      }else if(token.startsWith('.')){
+        var k=token.slice(1)
+        if(k==='*'){
+          if(typeof node==='object'&&node!==null)Object.values(node).forEach(function(c){results.push(c)})
+        }else if(node&&node[k]!==undefined){results.push(node[k])}
+      }
+    })
+    return results
+  }
+  var nodes=[obj]
+  tokens.filter(Boolean).forEach(function(t){nodes=evaluate(nodes,t)})
+  return nodes
+}
+
+// ── JSON → TypeScript types ──────────────────────────────
+function jsonToTypeScript(obj,name){
+  var lines=['// Generated by JSON Studio — universeinvedors.tech','']
+  var interfaces={}
+  function inferType(val,key){
+    if(val===null)return'null'
+    if(Array.isArray(val)){
+      if(!val.length)return'unknown[]'
+      var inner=inferType(val[0],key)
+      return inner+'[]'
+    }
+    if(typeof val==='object'){
+      var tname=key?capitalize(key):'Obj'
+      buildInterface(val,tname)
+      return tname
+    }
+    return typeof val
+  }
+  function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  function buildInterface(obj,iname){
+    if(interfaces[iname])return
+    var fields=[]
+    Object.keys(obj).forEach(function(k){
+      var safeKey=/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k)?k:'"'+k+'"'
+      var t=inferType(obj[k],k)
+      fields.push('  '+safeKey+': '+t+';')
+    })
+    interfaces[iname]='export interface '+iname+' {\n'+fields.join('\n')+'\n}'
+  }
+  if(Array.isArray(obj)){
+    var inner=obj.length?obj[0]:{}
+    buildInterface(inner,name+'Item')
+    lines.push('export type '+name+' = '+name+'Item[];')
+  }else{
+    buildInterface(obj,name)
+  }
+  Object.values(interfaces).forEach(function(i){lines.push(i);lines.push('')})
+  return lines.join('\n')
+}
+
+// ── JSON → CSV ───────────────────────────────────────────
 function jsonToCSV(obj){
-  var arr=Array.isArray(obj)?obj:(obj&&Array.isArray(Object.values(obj)[0])?Object.values(obj)[0]:[obj])
-  if(!arr.length)return'No array data found'
-  var keys=Object.keys(arr[0])
-  var rows=[keys.join(',')]
+  var arr=Array.isArray(obj)?obj:(obj&&typeof obj==='object'?[obj]:[])
+  if(!arr.length)return'// No array data found'
+  var keys=Array.from(new Set(arr.flatMap(Object.keys)))
+  var rows=[keys.map(function(k){return'"'+k+'"'}).join(',')]
   arr.forEach(function(item){
     rows.push(keys.map(function(k){
       var v=item[k]
       if(v===null||v===undefined)return''
       if(typeof v==='object')return'"'+JSON.stringify(v).replace(/"/g,'""')+'"'
-      if(typeof v==='string'&&v.includes(','))return'"'+v.replace(/"/g,'""')+'"'
+      if(typeof v==='string')return'"'+v.replace(/"/g,'""')+'"'
       return String(v)
     }).join(','))
   })
-  return rows.join('\n')
+  return rows.join('\r\n')
 }
 
-function jsonToTree(obj,key,isLast){
-  var html='<div style="margin-left:1rem">'
-  var type=Array.isArray(obj)?'array':typeof obj
-  html+='<span class="json-key">"'+key+'"</span>: '
+// ── Tree view ────────────────────────────────────────────
+function jsonToTree(val,key,isRoot){
+  var type=Array.isArray(val)?'array':typeof val
+  var html=''
   if(type==='object'||type==='array'){
     var open=type==='array'?'[':'{'
     var close=type==='array'?']':'}'
-    html+=open+'<br>'
-    var keys=type==='array'?obj.map(function(v,i){return i}):Object.keys(obj)
-    keys.forEach(function(k,i){
-      var val=type==='array'?obj[k]:obj[k]
-      var last=i===keys.length-1
-      if(typeof val==='object'&&val!==null){
-        html+=jsonToTree(val,k,last)
-      }else{
-        html+='<div style="margin-left:1rem"><span class="json-key">"'+k+'"</span>: '
-        if(typeof val==='string')html+='<span class="json-string">"'+val+'"</span>'
-        else if(typeof val==='number')html+='<span class="json-number">'+val+'</span>'
-        else if(typeof val==='boolean')html+='<span class="json-bool">'+val+'</span>'
-        else html+='<span class="json-null">null</span>'
-        html+=(last?'':',')+'</div>'
-      }
-    })
-    html+='<div>'+close+(isLast?'':',')+'</div>'
+    var childKeys=type==='array'?[...Array(val.length).keys()]:Object.keys(val)
+    html+='<details open><summary><span class="json-key">'+escKey(String(key))+'</span>: '+open+'<span style="color:var(--text-3);font-size:.85em"> '+childKeys.length+(type==='array'?' items':' keys')+'</span></summary>'
+    childKeys.forEach(function(k){html+=jsonToTree(val[k],k,false)})
+    html+=close+'</details>'
+  }else{
+    var cls=type==='string'?'json-string':type==='number'?'json-number':type==='boolean'?'json-bool':'json-null'
+    var display=type==='string'?'"'+escKey(String(val))+'"':escKey(String(val))
+    html+='<div style="padding:.1rem 0 .1rem 1rem"><span class="json-key">'+escKey(String(key))+'</span>: <span class="'+cls+'">'+display+'</span></div>'
   }
-  html+='</div>'
   return html
 }
 
+// ── Download helpers ─────────────────────────────────────
+function downloadOutput(ext,mime){
+  var text=document.getElementById('output-area').textContent
+  if(!text||text.includes('Paste JSON')){toast('Nothing to download','err');return}
+  var blob=new Blob([text],{type:mime})
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='output.'+ext;a.click()
+  toast('Downloaded output.'+ext,'ok')
+}
+function downloadCSV(){
+  var input=document.getElementById('input').value.trim()
+  try{var csv=jsonToCSV(JSON.parse(input));var blob=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='data.csv';a.click();toast('CSV downloaded','ok')}
+  catch(e){toast('Parse error: '+e.message.slice(0,40),'err')}
+}
+function downloadYAML(){
+  var input=document.getElementById('input').value.trim()
+  try{var yaml=jsyaml.dump(JSON.parse(input));var blob=new Blob([yaml],{type:'text/yaml'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='data.yaml';a.click();toast('YAML downloaded','ok')}
+  catch(e){toast('Parse error: '+e.message.slice(0,40),'err')}
+}
+
+// ── Keyboard shortcuts ───────────────────────────────────
+document.addEventListener('keydown',function(e){
+  var mod=e.ctrlKey||e.metaKey
+  if(mod&&e.key==='Enter'){e.preventDefault();runOp();return}
+  if(mod&&e.shiftKey&&e.key==='C'){e.preventDefault();copyOutput();return}
+  if(mod&&e.key==='l'){e.preventDefault();loadSample();return}
+})
+
+// ── Status bar ───────────────────────────────────────────
 function updateSize(){
   var v=document.getElementById('input').value
-  document.getElementById('input-size').textContent=v.length+' chars'
+  document.getElementById('input-size').textContent=v?v.length.toLocaleString()+' chars':''
 }
 
 function setStatus(msg,type){
   var s=document.getElementById('output-status')
   s.textContent=msg
-  s.style.color=type==='ok'?'var(--green)':type==='err'?'#f87171':type==='info'?'var(--acc-h)':'var(--text-4)'
+  s.style.color=type==='ok'?'var(--green)':type==='err'?'#f87171':type==='info'?'var(--accent-light)':'var(--text-4)'
 }
 
 function loadSample(){document.getElementById('input').value=SAMPLE;updateSize();runOp();toast('Sample loaded','ok')}
-function clearAll(){document.getElementById('input').value='';document.getElementById('output-area').innerHTML='Output will appear here…';updateSize();setStatus('Ready','')}
+function clearAll(){document.getElementById('input').value='';document.getElementById('output-area').innerHTML='<div class="empty-msg">Paste JSON in the input panel to begin.</div>';updateSize();setStatus('Ready','')}
 function copyOutput(){
   var text=document.getElementById('output-area').textContent
-  if(!text||text==='Output will appear here…'){toast('Nothing to copy','err');return}
-  navigator.clipboard.writeText(text).then(function(){toast('Copied','ok')})
+  if(!text||text.includes('Paste JSON')){toast('Nothing to copy','err');return}
+  navigator.clipboard.writeText(text).then(function(){toast('Copied ✓','ok')})
+}
+
+function sendToChart(){
+  var input=document.getElementById('input').value.trim()
+  if(!input){toast('Paste JSON first','err');return}
+  try{
+    JSON.parse(input)
+    localStorage.setItem('ui_chart_data',input)
+    window.open('https://chart.universeinvedors.tech?from=json','_blank')
+    toast('Opening Chart Studio�','ok')
+  }catch(e){toast('Invalid JSON � fix errors first','err')}
 }
 function toast(msg,type){var e=document.createElement('div');e.className='toast'+(type?' '+type:'');e.textContent=msg;document.getElementById('toasts').appendChild(e);setTimeout(function(){e.remove()},2800)}
 
@@ -291,7 +540,7 @@ function toast(msg,type){var e=document.createElement('div');e.className='toast'
 ;(function(){
   var inputPane=document.getElementById('input-pane')
   var dragging=false,startX,startW
-  document.querySelector('.divider')||document.addEventListener('mousedown',function(e){
+  document.addEventListener('mousedown',function(e){
     if(e.target.classList.contains('divider')){dragging=true;startX=e.clientX;startW=inputPane.offsetWidth;document.body.style.cssText='cursor:col-resize;user-select:none'}
   })
   document.addEventListener('mousemove',function(e){if(!dragging)return;inputPane.style.width=Math.max(150,Math.min(window.innerWidth-150,startW+e.clientX-startX))+'px'})
@@ -320,6 +569,9 @@ function toast(msg,type){var e=document.createElement('div');e.className='toast'
   });
 })();
 </script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}
+</script>
 </body>
 </html>>
 
@@ -333,5 +585,16 @@ textarea::selection{background:rgba(59,130,246,.25)}
 .err{color:#f87171;padding:1rem;font-family:var(--font-mono);background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:var(--r-md);margin:1rem;white-space:pre-wrap}
 .ok-msg{color:var(--green);padding:.65rem .85rem;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:var(--r-md);font-size:.8rem;margin:.65rem}
 .divider{width:4px;background:var(--bg-base);cursor:col-resize;flex-shrink:0;transition:background var(--t)}.divider:hover{background:var(--accent)}
+/* Diff output styles */
+.diff-added{background:rgba(16,185,129,.08);border-left:3px solid var(--green);padding:.15rem .5rem;white-space:pre-wrap;word-break:break-all;font-size:12.5px}
+.diff-removed{background:rgba(239,68,68,.08);border-left:3px solid #ef4444;padding:.15rem .5rem;white-space:pre-wrap;word-break:break-all;font-size:12.5px}
+.diff-changed{background:rgba(245,158,11,.08);border-left:3px solid var(--yellow);padding:.15rem .5rem;white-space:pre-wrap;word-break:break-all;font-size:12.5px}
+.diff-sign{display:inline-block;width:14px;color:inherit;font-weight:700;opacity:.7}
+.diff-path{color:var(--accent-light)}
+.diff-val{color:var(--text-2)}
+.diff-val-old{color:#f87171;text-decoration:line-through;opacity:.7}
+.diff-val-new{color:#34d399}
+details>summary{cursor:pointer;list-style:none;padding:.1rem 0;user-select:none}
+details>summary::-webkit-details-marker{display:none}
 @media(max-width:700px){.main{flex-direction:column}.divider{display:none}}
 </style>
