@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>JSON Formatter Online — Beautify & Pretty Print JSON Free | Universe Invedors</title>
+<meta name="description" content="Free online JSON formatter. Paste minified JSON and instantly get beautifully indented, syntax-highlighted output. No sign-up, no upload, 100% browser-based."/>
+<meta name="keywords" content="json formatter online,json beautifier,format json,pretty print json,json prettify,json indenter,json online,json format tool"/>
+<link rel="canonical" href="https://json.universeinvedors.tech/json-formatter"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
+<meta name="author" content="Universe Invedors"/>
+<meta property="og:title" content="JSON Formatter Online — Free, Fast, Browser-Based"/>
+<meta property="og:description" content="Instantly format and beautify JSON. Syntax highlighting, error detection, one-click copy. No account required."/>
+<meta property="og:url" content="https://json.universeinvedors.tech/json-formatter"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://universeinvedors.tech/og-image.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="google-adsense-account" content="ca-pub-8759032363251002"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759032363251002" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3GH7524RVW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3GH7524RVW');</script>
+<script type="application/ld+json">
+[{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"JSON Formatter",
+  "url":"https://json.universeinvedors.tech/json-formatter",
+  "applicationCategory":"DeveloperApplication",
+  "operatingSystem":"Web",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "featureList":["Format and beautify JSON","Syntax highlighting","Error detection","One-click copy","Browser-based — no upload"],
+  "publisher":{"@type":"Organization","name":"Universe Invedors","url":"https://universeinvedors.tech"}
+},{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is a JSON formatter?","acceptedAnswer":{"@type":"Answer","text":"A JSON formatter (also called a JSON beautifier or pretty printer) takes compact, minified JSON and adds indentation and line breaks to make it human-readable. It also validates the syntax and highlights keys, strings, numbers, booleans, and nulls in different colours."}},
+    {"@type":"Question","name":"Is my JSON data sent to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All JSON formatting on this tool happens entirely in your browser using JavaScript. Your data never leaves your device and is never sent to any server."}},
+    {"@type":"Question","name":"What is the difference between JSON format and JSON minify?","acceptedAnswer":{"@type":"Answer","text":"Formatting adds indentation (usually 2 spaces) and newlines to make JSON readable. Minifying removes all unnecessary whitespace to reduce file size — useful before storing JSON in databases or sending it over a network."}},
+    {"@type":"Question","name":"Can I format large JSON files?","acceptedAnswer":{"@type":"Answer","text":"Yes, this tool handles JSON files up to several megabytes. For very large files (10MB+), processing may take a few seconds. All computation runs locally in your browser."}},
+    {"@type":"Question","name":"What is JSON?","acceptedAnswer":{"@type":"Answer","text":"JSON (JavaScript Object Notation) is a lightweight data-interchange format. It uses human-readable text to represent data objects consisting of key-value pairs and arrays. JSON is the most common format for web APIs and configuration files."}}
+  ]
+},{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Universe Invedors","item":"https://universeinvedors.tech"},
+    {"@type":"ListItem","position":2,"name":"JSON Studio","item":"https://json.universeinvedors.tech"},
+    {"@type":"ListItem","position":3,"name":"JSON Formatter","item":"https://json.universeinvedors.tech/json-formatter"}
+  ]
+}]
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#03050a;--surf:#080d15;--card:#111b2e;--inp:#0d1421;
+  --t1:#f0f4ff;--t2:#a8b8cf;--t3:#5a6a82;--t4:#2e3d54;
+  --acc:#3b82f6;--acc-l:#60a5fa;--green:#10b981;
+  --border:rgba(255,255,255,.07);--font:'Inter',-apple-system,system-ui,sans-serif;--mono:'JetBrains Mono',Consolas,monospace;
+  --r:10px;--tr:180ms cubic-bezier(.4,0,.2,1);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;line-height:1.6}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+a{color:var(--acc-l);text-decoration:none}a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+.topbar{position:sticky;top:0;height:52px;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;padding:0 1rem;z-index:100}
+.logo-mark{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:14px;height:14px}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-co{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.logo-tool{font-size:.67rem;color:var(--t3);margin-top:1px}
+.topbar-spacer{flex:1}
+.btn-cta{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:var(--acc);color:#fff;border-radius:var(--r);font-size:.82rem;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all var(--tr)}
+.btn-cta:hover{background:var(--acc-l);text-decoration:none;box-shadow:0 0 20px rgba(59,130,246,.3)}
+.hero{max-width:900px;margin:0 auto;padding:4rem 1.5rem 2.5rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-l);margin-bottom:1rem}
+.hero-title{font-size:clamp(2rem,5vw,3.25rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:1rem}
+.hero-title span{background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:1.05rem;color:var(--t2);max-width:600px;margin:0 auto 2rem;line-height:1.7}
+.hero-cta{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.preview-box{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.preview-frame{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.preview-bar{display:flex;align-items:center;gap:.5rem;padding:.55rem 1rem;background:var(--surf);border-bottom:1px solid var(--border)}
+.preview-dot{width:10px;height:10px;border-radius:50%}
+.preview-code{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.preview-pane{padding:1.1rem 1.25rem;overflow:auto;max-height:260px}
+.preview-pane:first-child{border-right:1px solid var(--border);background:rgba(0,0,0,.2);color:var(--t3)}
+.preview-pane:last-child{color:var(--t2)}
+.jk{color:#60a5fa}.js{color:#34d399}.jn{color:#fb923c}.jb{color:#60a5fa}
+.features{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-l);margin-bottom:.5rem}
+.section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+.section-desc{font-size:.95rem;color:var(--t2);margin-bottom:2rem;max-width:560px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.feat-card:hover{border-color:rgba(59,130,246,.3)}
+.feat-icon{width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.feat-icon svg{width:18px;height:18px;stroke:var(--acc-l);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat-title{font-size:.9rem;font-weight:700;margin-bottom:.3rem}
+.feat-desc{font-size:.82rem;color:var(--t2);line-height:1.55}
+.related{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;display:block;text-decoration:none;transition:all var(--tr)}
+.related-card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px);text-decoration:none}
+.related-title{font-size:.85rem;font-weight:700;color:var(--t1);margin-bottom:.25rem}
+.related-desc{font-size:.75rem;color:var(--t3)}
+.faq{max-width:760px;margin:0 auto;padding:0 1.5rem 4rem}
+.faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+.faq-q{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--t1)}
+.faq-a{font-size:.88rem;color:var(--t2);line-height:1.65}
+.footer{border-top:1px solid var(--border);background:var(--surf);padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem;font-size:.7rem;color:var(--t3)}
+.footer a{color:var(--t3)}.footer a:hover{color:var(--t2);text-decoration:none}
+@media(max-width:640px){.preview-code{grid-template-columns:1fr}.preview-pane:first-child{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Site navigation">
+  <a href="https://json.universeinvedors.tech" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--t1)">
+    <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+    <div class="logo-text">
+      <span class="logo-co">Universe Invedors</span>
+      <span class="logo-tool">JSON Studio</span>
+    </div>
+  </a>
+  <div class="topbar-spacer"></div>
+  <a href="https://json.universeinvedors.tech" class="btn-cta">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 19 12 5 21 5 3"/></svg>
+    Open JSON Formatter
+  </a>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <p class="hero-eyebrow">Free Developer Tool</p>
+    <h1 id="hero-h1" class="hero-title">
+      JSON Formatter &amp; <span>Beautifier</span>
+    </h1>
+    <p class="hero-desc">
+      Paste minified or messy JSON and get perfectly formatted, syntax-highlighted output instantly.
+      100% browser-based — your data never leaves your device.
+    </p>
+    <div class="hero-cta">
+      <a href="https://json.universeinvedors.tech" class="btn-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 3 19 12 5 21 5 3"/></svg>
+        Open Formatter — Free
+      </a>
+      <a href="https://json.universeinvedors.tech/json-validator" style="display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:var(--r);font-size:.82rem;font-weight:600;color:var(--t2);text-decoration:none">
+        JSON Validator →
+      </a>
+    </div>
+  </section>
+
+  <!-- Visual preview -->
+  <div class="preview-box" aria-label="Before and after preview of JSON formatting">
+    <div class="preview-frame">
+      <div class="preview-bar">
+        <div class="preview-dot" style="background:#ef4444"></div>
+        <div class="preview-dot" style="background:#f59e0b"></div>
+        <div class="preview-dot" style="background:#10b981"></div>
+        <span style="font-size:.72rem;color:var(--t3);margin-left:.5rem">Before → After</span>
+      </div>
+      <div class="preview-code">
+        <div class="preview-pane" aria-label="Minified input">{"users":[{"id":1,"name":"Alice","email":"alice@example.com","role":"admin","active":true},{"id":2,"name":"Bob","email":"bob@example.com","role":"user","active":false}],"meta":{"total":2}}</div>
+        <div class="preview-pane" aria-label="Formatted output">
+<span class="jk">"users"</span>: [<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"id"</span>: <span class="jn">1</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"name"</span>: <span class="js">"Alice"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"email"</span>: <span class="js">"alice@example.com"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"role"</span>: <span class="js">"admin"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"active"</span>: <span class="jb">true</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"id"</span>: <span class="jn">2</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"name"</span>: <span class="js">"Bob"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="jk">"active"</span>: <span class="jb">false</span><br>
+&nbsp;&nbsp;}<br>
+]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features" aria-labelledby="features-h2">
+    <p class="section-label">What you get</p>
+    <h2 id="features-h2" class="section-title">Everything in one formatter</h2>
+    <p class="section-desc">Not just indentation — a complete JSON workflow tool built for developers.</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
+        <div class="feat-title">Format &amp; Beautify</div>
+        <div class="feat-desc">Instantly converts minified JSON into readable, indented structure with 2-space indent and proper line breaks.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div class="feat-title">Syntax Validation</div>
+        <div class="feat-desc">Detects and reports JSON syntax errors with the exact position — unclosed brackets, trailing commas, unquoted keys.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg></div>
+        <div class="feat-title">Syntax Highlighting</div>
+        <div class="feat-desc">Keys, strings, numbers, booleans and nulls are colour-coded for immediate readability at any nesting depth.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+        <div class="feat-title">One-Click Copy</div>
+        <div class="feat-desc">Copy the formatted output to your clipboard instantly. Also supports keyboard shortcut Ctrl+Shift+C.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        <div class="feat-title">Download Output</div>
+        <div class="feat-desc">Download the formatted JSON as a .json file, or export as YAML, CSV, or TypeScript types directly from the tool.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="feat-title">100% Private</div>
+        <div class="feat-desc">All processing happens in your browser using JavaScript. No data is ever sent to a server. Safe for sensitive API responses.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to use -->
+  <section style="max-width:760px;margin:0 auto;padding:0 1.5rem 3rem">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Format JSON in 3 seconds</h2>
+    <ol style="list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem">
+      <li style="display:flex;align-items:flex-start;gap:1rem">
+        <span style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:var(--acc-l);flex-shrink:0">1</span>
+        <div><strong style="font-size:.92rem">Paste your JSON</strong><br><span style="font-size:.85rem;color:var(--t2)">Copy any minified or messy JSON from an API response, config file, or database export and paste it into the left panel.</span></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:1rem">
+        <span style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:var(--acc-l);flex-shrink:0">2</span>
+        <div><strong style="font-size:.92rem">Formatting happens instantly</strong><br><span style="font-size:.85rem;color:var(--t2)">The formatter runs automatically as you type. Syntax errors appear immediately so you can fix them without clicking anything.</span></div>
+      </li>
+      <li style="display:flex;align-items:flex-start;gap:1rem">
+        <span style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:var(--acc-l);flex-shrink:0">3</span>
+        <div><strong style="font-size:.92rem">Copy or download</strong><br><span style="font-size:.85rem;color:var(--t2)">Click Copy to grab the formatted output, or use the Download bar to save as .json, .yaml, .csv, or TypeScript types.</span></div>
+      </li>
+    </ol>
+    <div style="margin-top:2rem;text-align:center">
+      <a href="https://json.universeinvedors.tech" class="btn-cta">Try it now — free</a>
+    </div>
+  </section>
+
+  <!-- Related tools -->
+  <section class="related" aria-labelledby="related-h2">
+    <p class="section-label">Also in JSON Studio</p>
+    <h2 id="related-h2" class="section-title">More JSON tools</h2>
+    <div class="related-grid" style="margin-top:1.25rem">
+      <a href="https://json.universeinvedors.tech/json-validator" class="related-card">
+        <div class="related-title">JSON Validator</div>
+        <div class="related-desc">Check if your JSON is valid and find syntax errors</div>
+      </a>
+      <a href="https://json.universeinvedors.tech/json-to-yaml" class="related-card">
+        <div class="related-title">JSON to YAML</div>
+        <div class="related-desc">Convert JSON to YAML format for config files</div>
+      </a>
+      <a href="https://json.universeinvedors.tech/json-to-csv" class="related-card">
+        <div class="related-title">JSON to CSV</div>
+        <div class="related-desc">Export JSON arrays as downloadable spreadsheets</div>
+      </a>
+      <a href="https://json.universeinvedors.tech" class="related-card">
+        <div class="related-title">JSON Diff</div>
+        <div class="related-desc">Compare two JSON objects and see what changed</div>
+      </a>
+      <a href="https://json.universeinvedors.tech" class="related-card">
+        <div class="related-title">JSONPath Query</div>
+        <div class="related-desc">Extract values using JSONPath expressions</div>
+      </a>
+      <a href="https://json.universeinvedors.tech" class="related-card">
+        <div class="related-title">JSON → TypeScript</div>
+        <div class="related-desc">Generate TypeScript interfaces from any JSON</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" aria-labelledby="faq-h2">
+    <p class="section-label">FAQ</p>
+    <h2 id="faq-h2" class="section-title">Common questions</h2>
+    <div style="margin-top:1.5rem">
+      <div class="faq-item">
+        <div class="faq-q">What is a JSON formatter?</div>
+        <div class="faq-a">A JSON formatter takes compact, minified JSON and adds proper indentation, line breaks, and spacing to make it human-readable. It also syntax-highlights different value types (keys, strings, numbers, booleans, nulls) so you can immediately understand the structure of any JSON document.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my JSON data sent to a server?</div>
+        <div class="faq-a">No. All JSON formatting happens entirely in your browser using JavaScript. Your data never leaves your device. This makes it safe to use with sensitive data — API tokens, user information, private configuration files.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between formatting and minifying JSON?</div>
+        <div class="faq-a">Formatting (beautifying) adds whitespace, indentation, and newlines to make JSON readable for humans. Minifying does the opposite — it removes all unnecessary whitespace to produce the smallest possible file size, which is useful when sending JSON over a network or storing it in a database.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use this to fix broken JSON?</div>
+        <div class="faq-a">The formatter will detect and show you exactly where the syntax error is — the specific character or position causing the problem. Common issues include missing commas, trailing commas (not valid in JSON), unquoted property names, and mismatched brackets. You'll need to fix the error manually — the formatter shows what's wrong and where.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What other JSON operations can I do on this tool?</div>
+        <div class="faq-a">Beyond formatting, JSON Studio offers: JSON validation, minification, YAML conversion, CSV export, TypeScript type generation, tree view navigation, JSON Diff comparison, and JSONPath querying — all in the same tool, all free and browser-based.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <a href="https://universeinvedors.tech">Universe Invedors</a>
+  <a href="https://json.universeinvedors.tech">JSON Studio</a>
+  <a href="https://json.universeinvedors.tech/json-validator">JSON Validator</a>
+  <a href="https://json.universeinvedors.tech/json-to-yaml">JSON to YAML</a>
+  <a href="https://json.universeinvedors.tech/json-to-csv">JSON to CSV</a>
+  <a href="https://text.universeinvedors.tech">Text Tools</a>
+  <a href="https://calc.universeinvedors.tech">Calculators</a>
+  <a href="https://code.universeinvedors.tech">Code IDE</a>
+  <span style="margin-left:auto">© 2026 Universe Invedors · JSON Formatter · Free Developer Tool</span>
+</footer>
+
+<script>
+// Auto-redirect with format mode pre-selected after 500ms if user came from search
+// Preserves the landing page content for SEO crawlers
+if(document.referrer&&!document.referrer.includes('universeinvedors')){
+  document.addEventListener('DOMContentLoaded',function(){
+    var btn=document.querySelector('.btn-cta')
+    if(btn)btn.addEventListener('click',function(e){
+      e.preventDefault()
+      window.location.href='https://json.universeinvedors.tech/?op=format'
+    })
+  })
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>JSON to YAML Converter Online — Free, Fast, Browser-Based | Universe Invedors</title>
+<meta name="description" content="Convert JSON to YAML online free. Paste any JSON and get clean YAML output instantly. Perfect for Kubernetes configs, Docker Compose, Ansible playbooks and CI/CD pipelines. No sign-up needed."/>
+<meta name="keywords" content="json to yaml converter,json to yaml online,json yaml converter,convert json yaml,yaml converter free"/>
+<link rel="canonical" href="https://json.universeinvedors.tech/json-to-yaml"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
+<meta property="og:title" content="JSON to YAML Converter — Free Online Tool"/><meta property="og:description" content="Convert JSON to YAML instantly. Perfect for Kubernetes, Docker Compose, Ansible and GitHub Actions configs."/>
+<meta property="og:url" content="https://json.universeinvedors.tech/json-to-yaml"/><meta property="og:type" content="website"/>
+<meta property="og:image" content="https://universeinvedors.tech/og-image.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="google-adsense-account" content="ca-pub-8759032363251002"/>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8759032363251002" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3GH7524RVW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3GH7524RVW');</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON to YAML Converter","url":"https://json.universeinvedors.tech/json-to-yaml","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Universe Invedors","url":"https://universeinvedors.tech"}},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is YAML?","acceptedAnswer":{"@type":"Answer","text":"YAML (YAML Ain't Markup Language) is a human-readable data serialization format. It uses indentation instead of brackets and braces, making it easier to read and write than JSON. YAML is commonly used for configuration files in Kubernetes, Docker Compose, Ansible, GitHub Actions and many other DevOps tools."}},{"@type":"Question","name":"Is JSON to YAML conversion lossless?","acceptedAnswer":{"@type":"Answer","text":"For most common data types (strings, numbers, booleans, nulls, objects, arrays) the conversion is lossless. However, JSON and YAML have some subtle differences in how they handle edge cases like strings that look like numbers, multi-line strings, and anchors/aliases which exist only in YAML."}},{"@type":"Question","name":"Which tools use YAML configuration?","acceptedAnswer":{"@type":"Answer","text":"YAML is used by: Kubernetes (k8s manifests), Docker Compose, Ansible playbooks, GitHub Actions workflows, GitLab CI/CD, CircleCI, Travis CI, Helm charts, Prometheus alerts, and many more DevOps and infrastructure tools."}}]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Universe Invedors","item":"https://universeinvedors.tech"},{"@type":"ListItem","position":2,"name":"JSON Studio","item":"https://json.universeinvedors.tech"},{"@type":"ListItem","position":3,"name":"JSON to YAML","item":"https://json.universeinvedors.tech/json-to-yaml"}]}]
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#03050a;--surf:#080d15;--card:#111b2e;--inp:#0d1421;
+  --t1:#f0f4ff;--t2:#a8b8cf;--t3:#5a6a82;--t4:#2e3d54;
+  --acc:#3b82f6;--acc-l:#60a5fa;--green:#10b981;
+  --border:rgba(255,255,255,.07);--font:'Inter',-apple-system,system-ui,sans-serif;--mono:'JetBrains Mono',Consolas,monospace;
+  --r:10px;--tr:180ms cubic-bezier(.4,0,.2,1);
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;line-height:1.6}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+a{color:var(--acc-l);text-decoration:none}a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+.topbar{position:sticky;top:0;height:52px;background:rgba(3,5,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;padding:0 1rem;z-index:100}
+.logo-mark{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:14px;height:14px}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-co{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.logo-tool{font-size:.67rem;color:var(--t3);margin-top:1px}
+.topbar-spacer{flex:1}
+.btn-cta{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;background:var(--acc);color:#fff;border-radius:var(--r);font-size:.82rem;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:all var(--tr)}
+.btn-cta:hover{background:var(--acc-l);text-decoration:none;box-shadow:0 0 20px rgba(59,130,246,.3)}
+.hero{max-width:900px;margin:0 auto;padding:4rem 1.5rem 2.5rem;text-align:center}
+.hero-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-l);margin-bottom:1rem}
+.hero-title{font-size:clamp(2rem,5vw,3.25rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:1rem}
+.hero-title span{background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:1.05rem;color:var(--t2);max-width:600px;margin:0 auto 2rem;line-height:1.7}
+.hero-cta{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.preview-box{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.preview-frame{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.preview-bar{display:flex;align-items:center;gap:.5rem;padding:.55rem 1rem;background:var(--surf);border-bottom:1px solid var(--border)}
+.preview-dot{width:10px;height:10px;border-radius:50%}
+.preview-code{display:grid;grid-template-columns:1fr 1fr;font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.preview-pane{padding:1.1rem 1.25rem;overflow:auto;max-height:260px}
+.preview-pane:first-child{border-right:1px solid var(--border);background:rgba(0,0,0,.2);color:var(--t3)}
+.preview-pane:last-child{color:var(--t2)}
+.jk{color:#60a5fa}.js{color:#34d399}.jn{color:#fb923c}.jb{color:#60a5fa}
+.features{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-l);margin-bottom:.5rem}
+.section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+.section-desc{font-size:.95rem;color:var(--t2);margin-bottom:2rem;max-width:560px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.feat-card:hover{border-color:rgba(59,130,246,.3)}
+.feat-icon{width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2);display:flex;align-items:center;justify-content:center;margin-bottom:.75rem}
+.feat-icon svg{width:18px;height:18px;stroke:var(--acc-l);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat-title{font-size:.9rem;font-weight:700;margin-bottom:.3rem}
+.feat-desc{font-size:.82rem;color:var(--t2);line-height:1.55}
+.related{max-width:900px;margin:0 auto;padding:0 1.5rem 3rem}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem;display:block;text-decoration:none;transition:all var(--tr)}
+.related-card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px);text-decoration:none}
+.related-title{font-size:.85rem;font-weight:700;color:var(--t1);margin-bottom:.25rem}
+.related-desc{font-size:.75rem;color:var(--t3)}
+.faq{max-width:760px;margin:0 auto;padding:0 1.5rem 4rem}
+.faq-item{border-bottom:1px solid var(--border);padding:1rem 0}
+.faq-q{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--t1)}
+.faq-a{font-size:.88rem;color:var(--t2);line-height:1.65}
+.footer{border-top:1px solid var(--border);background:var(--surf);padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .8rem;font-size:.7rem;color:var(--t3)}
+.footer a{color:var(--t3)}.footer a:hover{color:var(--t2);text-decoration:none}
+@media(max-width:640px){.preview-code{grid-template-columns:1fr}.preview-pane:first-child{display:none}}
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <a href="https://json.universeinvedors.tech" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--t1)">
+    <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+    <div style="display:flex;flex-direction:column;line-height:1"><span class="logo-co">Universe Invedors</span><span class="logo-sub">JSON Studio</span></div>
+  </a>
+  <div class="sp"></div>
+  <a href="https://json.universeinvedors.tech/?op=yaml" class="btn-cta">Convert JSON to YAML</a>
+</nav>
+<main>
+  <section class="hero">
+    <p class="eyebrow">Free Developer Tool</p>
+    <h1>JSON to <span class="grad">YAML Converter</span></h1>
+    <p class="hero-desc">Paste any JSON and get clean YAML output instantly. Perfect for Kubernetes manifests, Docker Compose, Ansible playbooks and GitHub Actions — no sign-up, 100% browser-based.</p>
+    <div class="hero-cta"><a href="https://json.universeinvedors.tech/?op=yaml" class="btn-cta">Convert JSON to YAML — Free</a></div>
+  </section>
+  <section class="container section">
+    <p class="section-label">Example conversion</p>
+    <h2 class="section-h2">JSON in, YAML out</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;font-family:monospace;font-size:13px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+        <div style="padding:.4rem .85rem;background:var(--surf);border-bottom:1px solid var(--border);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3)">JSON Input</div>
+        <pre style="padding:1rem;color:var(--t2);overflow:auto;line-height:1.65">{
+  "name": "my-app",
+  "version": "1.0.0",
+  "replicas": 3,
+  "debug": false,
+  "tags": ["web", "api"],
+  "database": {
+    "host": "db.local",
+    "port": 5432
+  }
+}</pre>
+      </div>
+      <div style="background:var(--card);border:1px solid rgba(16,185,129,.25);border-radius:12px;overflow:hidden">
+        <div style="padding:.4rem .85rem;background:var(--surf);border-bottom:1px solid var(--border);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)">YAML Output</div>
+        <pre style="padding:1rem;color:var(--t2);overflow:auto;line-height:1.65">name: my-app
+version: 1.0.0
+replicas: 3
+debug: false
+tags:
+  - web
+  - api
+database:
+  host: db.local
+  port: 5432</pre>
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <p class="section-label">Use cases</p>
+    <h2 class="section-h2">When you need JSON → YAML</h2>
+    <div class="grid-3" style="margin-top:1.25rem">
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="feat-title">Kubernetes Manifests</div><div class="feat-body">Kubernetes configuration files are written in YAML. Convert JSON API responses or Helm chart data into k8s-ready YAML manifests.</div></div>
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div><div class="feat-title">Docker Compose</div><div class="feat-body">Docker Compose uses YAML. Convert JSON service definitions, environment configs, or volume mappings to docker-compose.yml format.</div></div>
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div><div class="feat-title">GitHub Actions</div><div class="feat-body">GitHub Actions workflows are YAML files. Convert JSON workflow definitions or job configurations into .github/workflows/*.yml files.</div></div>
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="feat-title">Config Files</div><div class="feat-body">Many applications accept YAML as the preferred config format. Convert JSON settings files from APIs or SDKs into readable YAML config files.</div></div>
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="feat-title">Ansible Playbooks</div><div class="feat-body">Ansible playbooks and inventory files are YAML. Convert JSON inventory data, task definitions, or variable files to YAML format.</div></div>
+      <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="feat-title">API to Config</div><div class="feat-body">Many REST APIs return JSON responses. Use this converter to transform API output into YAML configuration for infrastructure-as-code tools.</div></div>
+    </div>
+  </section>
+  <div class="cta-bar"><div class="container"><h2>Convert your JSON to YAML</h2><p>Paste JSON, get YAML. Instant, free, private.</p><a href="https://json.universeinvedors.tech/?op=yaml" class="btn-cta">Open Converter</a></div></div>
+  <section class="container section">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-h2">Common questions</h2>
+    <div style="margin-top:1.25rem">
+      <div class="faq-item"><div class="faq-q">What is YAML?</div><div class="faq-a">YAML (YAML Ain't Markup Language) is a human-readable data serialization format that uses indentation instead of brackets and braces. It is easier to read and write than JSON and is the standard config format for Kubernetes, Docker Compose, Ansible, GitHub Actions and hundreds of other DevOps tools.</div></div>
+      <div class="faq-item"><div class="faq-q">Is JSON to YAML conversion lossless?</div><div class="faq-a">For the standard JSON value types — strings, numbers, booleans, nulls, objects, and arrays — the conversion is lossless. YAML can represent all valid JSON. However, YAML has additional features (anchors, aliases, multi-line strings, custom tags) that have no JSON equivalent, so YAML→JSON conversion can be lossy.</div></div>
+      <div class="faq-item"><div class="faq-q">Which tools use YAML?</div><div class="faq-a">YAML is used by: Kubernetes, Docker Compose, Ansible, GitHub Actions, GitLab CI/CD, CircleCI, Travis CI, Helm, Prometheus, Grafana dashboards, OpenAPI/Swagger specifications, and most infrastructure-as-code tools.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I also convert YAML back to JSON?</div><div class="faq-a">JSON Studio currently converts JSON to YAML. For YAML to JSON conversion, paste your YAML as text and many editors (like VS Code with YAML extension) can convert it. We plan to add YAML→JSON in a future update.</div></div>
+    </div>
+  </section>
+  <section class="container section">
+    <p class="section-label">Related tools</p>
+    <h2 class="section-h2">More in JSON Studio</h2>
+    <div class="related-grid">
+      <a href="https://json.universeinvedors.tech/json-formatter" class="rel-card"><div class="rel-title">JSON Formatter</div><div class="rel-desc">Beautify and highlight JSON</div></a>
+      <a href="https://json.universeinvedors.tech/json-validator" class="rel-card"><div class="rel-title">JSON Validator</div><div class="rel-desc">Check JSON syntax errors</div></a>
+      <a href="https://json.universeinvedors.tech/json-to-csv" class="rel-card"><div class="rel-title">JSON to CSV</div><div class="rel-desc">Export JSON as spreadsheets</div></a>
+      <a href="https://json.universeinvedors.tech" class="rel-card"><div class="rel-title">JSON Diff</div><div class="rel-desc">Compare two JSON objects</div></a>
+      <a href="https://code.universeinvedors.tech" class="rel-card"><div class="rel-title">Code IDE</div><div class="rel-desc">Full browser-based editor</div></a>
+      <a href="https://diagram.universeinvedors.tech" class="rel-card"><div class="rel-title">Diagrams</div><div class="rel-desc">Architecture and flow diagrams</div></a>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <a href="https://universeinvedors.tech">Universe Invedors</a>
+  <a href="https://json.universeinvedors.tech">JSON Studio</a>
+  <a href="https://json.universeinvedors.tech/json-formatter">JSON Formatter</a>
+  <a href="https://json.universeinvedors.tech/json-validator">JSON Validator</a>
+  <a href="https://json.universeinvedors.tech/json-to-csv">JSON to CSV</a>
+  <a href="https://calc.universeinvedors.tech">Calculators</a>
+  <a href="https://text.universeinvedors.tech">Text Tools</a>
+  <span style="margin-left:auto">© 2026 Universe Invedors · JSON to YAML · Free Developer Tool</span>
+</footer>
+</body>
+</html>
